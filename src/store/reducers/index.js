@@ -1,6 +1,10 @@
 import {combineReducers} from 'redux';
 
-// import reducer from './reducer';
+import auth from './auth';
+import carrinho from './carrinho';
 
 // insert your reducer here
-export default combineReducers({});
+export default combineReducers({
+    auth,
+    carrinho
+});

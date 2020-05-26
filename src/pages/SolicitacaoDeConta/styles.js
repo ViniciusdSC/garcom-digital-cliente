@@ -1,0 +1,31 @@
+import styled from 'styled-components';
+import { Alert as NativeAlert } from '@material-ui/lab';
+
+export const Container = styled.div`
+    width: 90%;
+    position: relative;
+    left: 5%;
+    padding-top: 10px;
+`
+
+export const QrCodeImg = styled.img`
+    width: 100%;
+`;
+
+export const Alert = styled(NativeAlert)`
+    background: green;
+`
+
+export const Title = styled.h3`
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`
+
+export const ProgressContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 45px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
