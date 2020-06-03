@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from '~/hooks/useHistory';
+import {useHistory} from 'react-router-dom';
 import {
     AppBar,
     Toolbar,

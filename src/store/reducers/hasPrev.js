@@ -1,4 +1,4 @@
-const TYPES = {
+export const TYPES = {
     PREV_TRUE: 'PREV_TRUE',
     PREV_FALSE: 'PREV_FALSE'
 };
