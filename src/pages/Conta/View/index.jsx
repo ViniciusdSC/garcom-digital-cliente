@@ -29,11 +29,15 @@ export default function ViewConta () {
     useEffect(() => {
         getPedidos().then(({status, ...rest}) => {
             if (status) {
-                setTotal(
-                    rest.data
-                        .map(({preco}) => preco)
-                        .reduce((accumulator, currentValue) => accumulator + currentValue)
-                );
+                if (rest.data.length === 0) {
+                    setTotal(0);
+                } else {
+                    setTotal(
+                        rest.data
+                            .map(({preco}) => preco)
+                            .reduce((accumulator, currentValue) => accumulator + currentValue)
+                    );
+                }
                 setPedidos(rest.data);
             } else {
                 console.log(rest);

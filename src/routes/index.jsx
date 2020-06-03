@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { NavBar, Icon } from 'antd-mobile';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQrcode, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { Router, Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import history from './history';
 
 import MainLayout from '~/layouts/Main';
 
@@ -12,12 +11,38 @@ import ViewConta from '~/pages/Conta/View';
 
 import ProdutosList from '~/pages/Produto/List';
 import ProdutoView from '~/pages/Produto/View';
-import PedirConta from 'pages/Conta/Pedir';
+import PedirConta from '~/pages/Conta/Pedir';
+
+import AuthError from '~/pages/Error/Auth';
+
+function PrivateRoute (...props) {
+  const token = useSelector(({auth}) => auth.token);
+  const {push} = useHistory();
+
+  if (token) {
+    return <Route {...props} />
+  }
+  
+  push("error/auth", {
+    error_code: 1,
+    error_message: "Sessão não encontrada!"
+  })
+}
+
+function GuestRoute (...props) {
+  const token = useSelector(({auth}) => auth.token);
+
+  if (!token) {
+    return <Route {...props} />
+  }
+
+  return <Redirect to="/" />;
+}
 
 // ShoppingCart
 export default function Routes() {
   return (
-    <Router>
+    <Router history={history}>
       <>
         <Switch>
           <Route path="/conta/create/:uid">
@@ -49,6 +74,9 @@ export default function Routes() {
             <MainLayout>
               <ProdutoView />
             </MainLayout>
+          </Route>
+          <Route path="/error/auth">
+            <AuthError />
           </Route>
         </Switch>
       </>
