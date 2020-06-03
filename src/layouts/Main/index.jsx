@@ -14,8 +14,8 @@ function MainLayout ({children, ...props}) {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
     const [dialogTitle, setDialogTitle] = useState('');
-    const {push, ...history} = useHistory();
-    const AppHeader = props.header ? props.header : <Header />;
+    const {push} = useHistory();
+    const AppHeader = props.header ? props.header : (props) => <Header {...props} />;
 
     return (
         <DialogDisplayContext.Provider value={(title) => {

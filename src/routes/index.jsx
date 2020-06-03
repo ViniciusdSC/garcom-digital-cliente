@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import history from './history';
+import PrevHeader from '~/components/Header/Prev';
 
 import MainLayout from '~/layouts/Main';
 
@@ -56,12 +57,12 @@ export default function Routes() {
             </MainLayout>           
           </Route>
           <Route path="/conta/view">
-            <MainLayout>
+            <MainLayout header={(props) => <PrevHeader {...props} />}>
               <ViewConta />
             </MainLayout>           
           </Route>
           <Route path="/conta/pedir">
-            <MainLayout>
+            <MainLayout header={(props) => <PrevHeader {...props} />}>
               <PedirConta />
             </MainLayout>           
           </Route>
@@ -71,7 +72,7 @@ export default function Routes() {
             </MainLayout>
           </Route>
           <Route path="/produto/:id">
-            <MainLayout>
+            <MainLayout header={(props) => <PrevHeader {...props} />}>
               <ProdutoView />
             </MainLayout>
           </Route>

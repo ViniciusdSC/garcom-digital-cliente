@@ -9,15 +9,18 @@ import {
 } from '@material-ui/core';
 import {ShoppingCart, AccountBalanceWallet, ArrowBack} from '@material-ui/icons';
 import {useSelector} from 'react-redux';
-import { RightContainer } from './styles';
+import { RightContainer } from '../styles';
 
-export default function Header ({setDrawerIsOpen}) {
+function PrevHeader ({setDrawerIsOpen}) {
     const history = useHistory();
     const pedidos = useSelector(({carrinho}) => carrinho.length);
 
     return (
         <AppBar position="static">
             <Toolbar>
+                <IconButton onClick={() => history.goBack()} edge="start" color="inherit">
+                    <ArrowBack />
+                </IconButton>
                 <Typography variant="h6">
                     Garçom digital
                 </Typography>
@@ -40,3 +43,5 @@ export default function Header ({setDrawerIsOpen}) {
         </AppBar>
     )
 }
+
+export default PrevHeader;

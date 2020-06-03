@@ -20,7 +20,7 @@ import {
 } from './styles';
 import DialogDisplayContext from '~/context/DialogDisplayContext';
 
-export default function CarrinhoDrawer ({ onClose, ...props }) {
+export default function CarrinhoDrawer (props) {
     const pedidos = useSelector(({carrinho}) => carrinho);
     const dispatch = useDispatch();
     const openDialog = useContext(DialogDisplayContext);
@@ -79,7 +79,7 @@ export default function CarrinhoDrawer ({ onClose, ...props }) {
                                 type: TYPES.REMOVE_ALL,
                                 payload: {}
                             });
-                            onClose();
+                            props.onClose();
                             openDialog(data.message);
                         }
                     })
