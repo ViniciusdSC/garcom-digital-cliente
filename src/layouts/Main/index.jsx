@@ -8,7 +8,7 @@ import {
 import CarrinhoDrawer from '~/components/CarrinhoDrawer';
 import DialogDisplayContext from '~/context/DialogDisplayContext';
 import { useHistory } from 'react-router-dom';
-import Header from '~/components/Header';
+import Header from '~/components/Header/AppBar';
 
 function MainLayout ({children, ...props}) {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);

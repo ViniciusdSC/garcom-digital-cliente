@@ -13,13 +13,10 @@ export const instance = () => {
     }
   });
 
-  console.log('history', history);
-
   instance.interceptors.response.use(function (response) {
     if (!response.data.status) {
       switch (response.data.error_code) {
         case 101:
-          console.log(response.data.error_message);
           history.push("/error/auth", {
             error_code: 101,
             error_message: "Problemas de autorização com o servidor!"
@@ -41,13 +38,27 @@ export const instance = () => {
           history.push("/conta/active");
           break;
         case 202:
-          history.push("/conta/pedir");
+          history.push("/conta/close");
           break;
         case 203:
-          console.log('erro 203');
+          history.push("/error/auth", {
+            error_code: 203,
+            error_message: "Sua comanda não foi encontrada!"
+          });
           break;
+        case 204:
+          history.push("/conta/pedir");
+          break;
+        case 205:
+          history.push("/error/auth", {
+            error_code: 205,
+            error_message: "Mesa não foi encontrada!"
+          });
         default:
-          console.log('ok');
+          history.push("/error/auth", {
+            error_code: 302,
+            error_message: "Ocorreu um erro, por favor contate o desenvolvedor!"
+          });
           break;
       }
     }

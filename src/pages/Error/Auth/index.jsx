@@ -1,31 +1,41 @@
 import React from 'react';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 import {
-    Card,
-    Typography
+    ErrorDescription,
+    ErrorTitle,
+    Container,
+    ErrorIcon,
+    ErrorIconContainer,
+    ButtonContainer
 } from './styles';
 
 export default function Auth () {
     const {state} = useLocation();
+    const {replace} = useHistory();
     const {error_code, error_message} = state;
 
     return (
-        <Card variant="outlined">
-            <CardContent>
-                <Typography variant="h5" component="h2">
-                    Erro {error_code}
-                </Typography>
-                <br />
-                <Typography variant="h5" component="h2">
-                    {error_message}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
-        </Card>
+        <Container>
+            <ErrorIconContainer>
+                <ErrorIcon color="secondary" />
+            </ErrorIconContainer>
+            <ErrorTitle>
+                Erro {error_code}
+            </ErrorTitle>
+            <ErrorDescription>
+                {error_message}
+            </ErrorDescription>
+            <ButtonContainer>
+                <Button 
+                    onClick={() => replace("/camera")} 
+                    variant="contained" 
+                    color="primary" 
+                    disableElevation
+                >
+                    Liberar uma nova mesa
+                </Button>
+            </ButtonContainer>
+        </Container>
     )
 }
